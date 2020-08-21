@@ -19,21 +19,20 @@ class Snake:
         global score, game_mode
         # handle key inputs
         keys = pygame.key.get_pressed()
-        for key in keys:
-            if self.speed_x == 0:
-                if keys[pygame.K_a]:
-                    self.speed_x = -1
-                    self.speed_y = 0
-                if keys[pygame.K_d]:
-                    self.speed_x = 1
-                    self.speed_y = 0
-            elif self.speed_y == 0:
-                if keys[pygame.K_w]:
-                    self.speed_x = 0
-                    self.speed_y = -1
-                if keys[pygame.K_s]:
-                    self.speed_x = 0
-                    self.speed_y = 1
+        if self.speed_x == 0:
+            if keys[pygame.K_a]:
+                self.speed_x = -1
+                self.speed_y = 0
+            if keys[pygame.K_d]:
+                self.speed_x = 1
+                self.speed_y = 0
+        elif self.speed_y == 0:
+            if keys[pygame.K_w]:
+                self.speed_x = 0
+                self.speed_y = -1
+            if keys[pygame.K_s]:
+                self.speed_x = 0
+                self.speed_y = 1
 
         # check for wall collisions
         if self.x + self.speed_x < 0 or self.x + self.speed_x > rows - 1 or self.y + self.speed_y > rows - 1 or \
@@ -74,7 +73,7 @@ class Segment:
         self.y = y
 
     def draw(self):
-        pygame.draw.rect(screen, (0, 255 - player.segments.index(self), 0),
+        pygame.draw.rect(screen, (0, 255, 0),
                          (self.x * size / rows, self.y * size / rows, size / rows, size / rows))
 
 
@@ -175,7 +174,6 @@ while running:
                     food = Food(random.randrange(0, 16), random.randrange(0, 16))
                 render_screen()
     if game_mode == "play":
-        pygame.time.delay(1)
-        clock.tick(7)
         player.move()
         render_screen()
+        clock.tick(7)
