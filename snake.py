@@ -127,7 +127,6 @@ def draw_grid():
 def render_screen():
     screen.fill((0, 0, 0))
     draw_grid()
-    player.move()
     player.draw()
     food.draw()
     screen.fill((0, 0, 0), (0, 513, 512, 50))
@@ -180,6 +179,7 @@ while running:
                     food = Food(random.randrange(0, 16), random.randrange(0, 16))
                 render_screen()
     if game_mode == "play":
-        pygame.time.delay(0)
+        pygame.time.delay(1)
         clock.tick(7)
+        player.move()
         render_screen()
