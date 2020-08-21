@@ -56,12 +56,8 @@ class Snake:
 
         # checks for eating food
         if self.x == food.x and self.y == food.y:
-            for a in range(0, len(self.segments)):
-                segment = self.segments[a]
-                food.x = random.randrange(0, 16)
-                food.y = random.randrange(0, 16)
-                if food.x == segment.x and food.y == segment.y:
-                    a -= 1
+            food.x = random.randrange(0, 16)
+            food.y = random.randrange(0, 16)
             score += 1
         else:
             self.segments.pop()
